@@ -4,7 +4,19 @@
 
 gifs = [
     "http://motorcitygas.files.wordpress.com/2013/10/kirby-inhaling-food.gif"
-    "http://www.survivingcollege.com/wp-content/uploads/2013/10/tumblr_lyd6q0cPm01r3b1tu.gif"	
+    "http://www.survivingcollege.com/wp-content/uploads/2013/10/tumblr_lyd6q0cPm01r3b1tu.gif"
+    "http://stream1.gifsoup.com/view/59779/nom-nom-o.gif"
+]
+
+# Starts with Sunday
+cleanup = [
+    "Whoever is in on this particular Sunday, you know who you are"
+    "Business/Marketing"
+    "Design/QA"
+    "Accounting/HR"
+    "Support"
+    "Devs/PMs/IT"
+    "Whoever is in on this particular Saturday, you know who you are"
 ]
 
 module.exports = (robot) ->
@@ -37,3 +49,6 @@ module.exports = (robot) ->
     robot.http("http://nugget:42420/display/food/data/food?day=" + date)
       .get() (err, res, body) ->
         msg.send(body)
+  robot.respond /clean up/i, (msg) ->
+    msg.send("Today " + cleanup[new Date().getDay()] + " should clean up")
+    
