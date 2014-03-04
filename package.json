@@ -15,9 +15,9 @@
   },
 
   "dependencies": {
-    "hubot-hipchat": "2.5.1-5",
-    "hubot": "2.5.1",
-    "hubot-scripts": "2.5.2",
+    "hubot-hipchat": "2.6.4",
+    "hubot": "2.6.4",
+    "hubot-scripts": "2.5.4",
     "optparse": "1.0.3",
     "redis" : "0.7.2",
     "jsdom" : "0.2.14",
