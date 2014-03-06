@@ -3,9 +3,9 @@
 # ???
 
 gifs = [
-    "http://motorcitygas.files.wordpress.com/2013/10/kirby-inhaling-food.gif"
-    "http://www.survivingcollege.com/wp-content/uploads/2013/10/tumblr_lyd6q0cPm01r3b1tu.gif"
-    "http://stream1.gifsoup.com/view/59779/nom-nom-o.gif"
+    "https://s3.amazonaws.com/hudl-internal-assets/kirby-inhaling-food.gif"
+    "https://s3.amazonaws.com/hudl-internal-assets/patrick-burgers.gif"
+    "https://s3.amazonaws.com/hudl-internal-assets/chompy.gif"
 ]
 
 # Starts with Sunday
