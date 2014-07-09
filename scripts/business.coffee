@@ -2,5 +2,5 @@
 # 	Shows a haha, business image when anybody says business.
 
 module.exports = (robot) ->
-	robot.hear /business/i, (msg) ->
-		msg.send "http://img.picsgen.com/wp-content/uploads/2013/04/haha-business.jpg"
+  robot.hear /business/i, (msg) ->
+    msg.send "https://s3.amazonaws.com/hudl-internal-assets/haha-business.jpg"
