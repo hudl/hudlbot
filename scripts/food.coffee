@@ -8,6 +8,14 @@ gifs = [
     "https://s3.amazonaws.com/hudl-internal-assets/chompy.gif"
 ]
 
+healthyGifs = [
+    "https://s3.amazonaws.com/hudl-internal-assets/jhdKf.gif"
+    "https://s3.amazonaws.com/hudl-internal-assets/141.gif"
+    "https://s3.amazonaws.com/hudl-internal-assets/919.gif"
+    "https://s3.amazonaws.com/hudl-internal-assets/1069.gif"
+    "https://s3.amazonaws.com/hudl-internal-assets/1189.gif"
+]
+
 allWeekRandom = false
 
 # Starts with Sunday
@@ -28,8 +36,13 @@ module.exports = (robot) ->
 #      .post() (err, res, body) ->
 #        msg.send()
   robot.hear /.*(Food is here).*/, (msg) ->
-    now = new Date().getHours()
-    msg.send msg.random gifs  if now is 11 or now is 12
+    now = new Date()
+    nowHours = now.getHours()
+    if now.getDay() is 4
+      msg.send msg.random healthyGifs if nowHours is 11 or nowHours is 12
+    else
+      msg.send msg.random gifs  if nowHours is 11 or nowHours is 12
+
   robot.hear /lunch/i, (msg) ->
     return msg.send("(shrug) It's random lunch all week.") if allWeekRandom
     message = msg.message.text.toLowerCase()
@@ -58,4 +71,3 @@ module.exports = (robot) ->
   robot.respond /toggle random lunch/i, (msg) ->
   	allWeekRandom = !allWeekRandom
   	msg.send("Random lunch for week is now set to "+allWeekRandom)
-    
