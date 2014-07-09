@@ -39,7 +39,7 @@ module.exports = (robot) ->
   robot.hear /.*(Food is here).*/, (msg) ->
     now = new Date().getHours()
     if now.getDay() is 4 or debug
-      msg.send msg.random healthyGifs if now is 11 or now is 12
+      msg.send msg.random healthyGifs
     else
       msg.send msg.random gifs  if now is 11 or now is 12
 
