@@ -37,11 +37,12 @@ module.exports = (robot) ->
 #      .post() (err, res, body) ->
 #        msg.send()
   robot.hear /.*(Food is here).*/, (msg) ->
-    now = new Date().getHours()
+    now = new Date()
+    nowHours = now.getHours()
     if now.getDay() is 4 or debug
       msg.send msg.random healthyGifs
     else
-      msg.send msg.random gifs  if now is 11 or now is 12
+      msg.send msg.random gifs  if nowHours is 11 or nowHours is 12
 
   robot.hear /lunch/i, (msg) ->
     return msg.send("(shrug) It's random lunch all week.") if allWeekRandom
