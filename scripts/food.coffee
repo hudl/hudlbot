@@ -17,7 +17,6 @@ healthyGifs = [
 ]
 
 allWeekRandom = false
-debug = false
 
 # Starts with Sunday
 cleanup = [
@@ -39,8 +38,8 @@ module.exports = (robot) ->
   robot.hear /.*(Food is here).*/, (msg) ->
     now = new Date()
     nowHours = now.getHours()
-    if now.getDay() is 4 or debug
-      msg.send msg.random healthyGifs
+    if now.getDay() is 4
+      msg.send msg.random healthyGifs if nowHours is 11 or nowHours is 12
     else
       msg.send msg.random gifs  if nowHours is 11 or nowHours is 12
 
@@ -72,8 +71,3 @@ module.exports = (robot) ->
   robot.respond /toggle random lunch/i, (msg) ->
   	allWeekRandom = !allWeekRandom
   	msg.send("Random lunch for week is now set to "+allWeekRandom)
-
-  robot.respond /toggle debug/i, (msg) ->
-    debug = !debug
-    msg.send("Debug is now set to "+debug)
-    
