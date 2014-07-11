@@ -7,4 +7,4 @@
 
 module.exports = (robot) ->
         robot.respond /.*tried.*/i, (msg) ->
-          msg.send "https://laurenburgueno.files.wordpress.com/2012/10/060.png?w=300&h=285"
+          msg.send "https://laurenburgueno.files.wordpress.com/2012/10/060.png"
