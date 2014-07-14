@@ -7,4 +7,4 @@
 
 module.exports = (robot) ->
         robot.hear /.*you tried.*/i, (msg) ->
-          msg.send "https://laurenburgueno.files.wordpress.com/2012/10/060.png"
+          msg.send "https://s3.amazonaws.com/hudl-internal-assets/060.png"
