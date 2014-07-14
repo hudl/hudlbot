@@ -6,5 +6,5 @@
 #   Mike Jensen
 
 module.exports = (robot) ->
-        robot.respond /.*tried.*/i, (msg) ->
+        robot.hear /.*you tried.*/i, (msg) ->
           msg.send "https://laurenburgueno.files.wordpress.com/2012/10/060.png"
