@@ -7,4 +7,4 @@
 
 module.exports = (robot) ->
   robot.hear /no johns/i, (msg) ->
-    msg.send "http://i.imgur.com/vaSQoCl.gif"
+    msg.send "https://s3.amazonaws.com/hudl-internal-assets/vaSQoCl.gif"
