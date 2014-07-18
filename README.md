@@ -1,3 +1,15 @@
+If you're adding a command that might be considered spam, make the following the first line after `robot.hear` or `robot.respond`.
+
+```
+return unless msg.message.room is "dev_interns" # fiil in any room name you want to whitelist it.
+```
+```
+module.exports = (robot) ->
+  robot.hear /(\b[0-9]{3}\b)/i, (msg) ->
+    return unless msg.message.room is "dev_interns"
+    match = msg.match[1].trim()
+```
+
 # Hubot
 
 This is a version of GitHub's Campfire bot, hubot. He's pretty cool.
