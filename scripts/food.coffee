@@ -14,6 +14,7 @@ healthyGifs = [
     "https://s3.amazonaws.com/hudl-internal-assets/919.gif"
     "https://s3.amazonaws.com/hudl-internal-assets/1069.gif"
     "https://s3.amazonaws.com/hudl-internal-assets/1189.gif"
+    "https://s3.amazonaws.com/hudl-internal-assets/sadsketch.png"
 ]
 
 allWeekRandom = false
