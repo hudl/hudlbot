@@ -8,15 +8,6 @@ gifs = [
     "https://s3.amazonaws.com/hudl-internal-assets/chompy.gif"
 ]
 
-healthyGifs = [
-    "https://s3.amazonaws.com/hudl-internal-assets/jhdKf.gif"
-    "https://s3.amazonaws.com/hudl-internal-assets/141.gif"
-    "https://s3.amazonaws.com/hudl-internal-assets/919.gif"
-    "https://s3.amazonaws.com/hudl-internal-assets/1069.gif"
-    "https://s3.amazonaws.com/hudl-internal-assets/1189.gif"
-    "https://s3.amazonaws.com/hudl-internal-assets/sadsketch.png"
-]
-
 allWeekRandom = false
 
 # Starts with Sunday
@@ -39,10 +30,7 @@ module.exports = (robot) ->
   robot.hear /.*(Food is here).*/, (msg) ->
     now = new Date()
     nowHours = now.getHours()
-    if msg.message.text.toLowerCase().indexOf("healthy") isnt -1
-      msg.send msg.random healthyGifs if nowHours is 11 or nowHours is 12
-    else
-      msg.send msg.random gifs  if nowHours is 11 or nowHours is 12
+    msg.send msg.random gifs  if nowHours is 11 or nowHours is 12
 
   robot.hear /lunch/i, (msg) ->
     return msg.send("(shrug) It's random lunch all week.") if allWeekRandom
