@@ -22,17 +22,13 @@ cleanup = [
 ]
 
 module.exports = (robot) ->
-#  robot.hear /^food$/i, (msg) ->
-#    msg.send "Thanks #{msg.message.user.name}, I'll let everybody know!"
-#    robot.http("http://bclymer.unl.edu:42420/inbound/food")
-#      .post() (err, res, body) ->
-#        msg.send()
   robot.hear /.*(Food is here).*/, (msg) ->
     now = new Date()
-    nowHours = now.getHours()
+    nowHours = now.getHours()    
     msg.send msg.random gifs  if nowHours is 11 or nowHours is 12
 
   robot.hear /lunch/i, (msg) ->
+    return if msg.message.text.match('subscribe')
     return msg.send("(shrug) It's random lunch all week.") if allWeekRandom
     message = msg.message.text.toLowerCase()
     date = new Date().getDay()
@@ -54,9 +50,10 @@ module.exports = (robot) ->
     robot.http("http://nugget:42420/display/food/data/food?day=" + date)
       .get() (err, res, body) ->
         msg.send(body)
+
   robot.respond /clean up/i, (msg) ->
     msg.send("Today " + cleanup[new Date().getDay()] + " should clean up")
 
   robot.respond /toggle random lunch/i, (msg) ->
-  	allWeekRandom = !allWeekRandom
-  	msg.send("Random lunch for week is now set to "+allWeekRandom)
+    allWeekRandom = !allWeekRandom
+    msg.send("Random lunch for week is now set to "+allWeekRandom)	

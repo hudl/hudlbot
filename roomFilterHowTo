@@ -1,0 +1,13 @@
+nano node_modules/hubot-hipchat/src/hipchat.js
+
+# In Hipchat.prototype.send
+# Under:
+# if (!target_jid) {
+#   return this.logger.error("ERROR: Not sure who to send to: envelope=" + (inspect(envelope)));
+# }
+# add the conditional
+
+if (this.robot.brain.data["banned_rooms"].indexOf(target_jid) != -1) {
+  return this.logger.error("Not responding to messages in " + target_jid);
+}
+

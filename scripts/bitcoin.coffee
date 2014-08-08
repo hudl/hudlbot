@@ -17,15 +17,12 @@ cheerio = require('cheerio')
 
 module.exports = (robot) ->
   robot.respond /bitcoin price/i, (msg) ->
-    bitcoinPrice(msg)
-
-bitcoinPrice = (msg) ->
-  msg
-    .send "Looking up... sit tight..."
-  msg
-    .http("http://bitcoinprices.com/")
-    .get() (err, res, body) ->
-      msg.send "#{getPrice(body)}"
+    msg
+      .send "Looking up... sit tight..."
+    msg
+      .http("http://bitcoinprices.com/")
+      .get() (err, res, body) ->
+        msg.send "#{getPrice(body)}"
 
 getPrice = (body) ->
   $ = cheerio.load(body)
