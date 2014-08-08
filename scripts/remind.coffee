@@ -6,8 +6,9 @@
 
 class Reminders
   constructor: (@robot) ->
-    @cache = []
+    @cache = @robot.brain.data.reminders || []
     @current_timeout = null
+    @queue()
 
     @robot.brain.on 'loaded', =>
       if @robot.brain.data.reminders
@@ -80,3 +81,4 @@ module.exports = (robot) ->
     reminder = new Reminder msg.message.user, time, action
     reminders.add reminder
     msg.send 'I\'ll remind you to ' + action + ' on ' + reminder.dueDate()
+
