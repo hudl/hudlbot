@@ -5,8 +5,9 @@
 # Configuration:
 #   None
 # Commands:
-#   deploy <branch> <app>
-#   monitor <alyx3 link>
+#   hubot deploy <branch> <app> - deploys an alyx3 branch and monitors it
+#   hubot deploy <branch> <app> manual - deploys an alyx3 branch
+#   hubot monitor <link> - monitors an alyx branch for status changes
 
 class Monitor
   constructor: (replyTo, robot, url, branch) ->
