@@ -6,6 +6,7 @@
 #   hubot clock out - Clocks out at the current time
 #   hubot clock me <start> <finish> - Clocks in at <start> and out at <finish>
 #   hubot clock register <username> <password> - How Brehm should authenticate you on timetracker
+#   hubot clock unregister - Unregisters your account with Brehm
 #   hubot clock help - Shows the list of clock commands 
 
 class Clock
@@ -73,5 +74,5 @@ module.exports = (robot) ->
     msg.send("You are unregistered.")
 
   robot.respond /clock help/i, (msg) ->
-    msg.send("@Brehmbot clock in - Clocks in at the current time hubot\n @Brehmbot clock out - Clocks out at the current time hubot\n @Brehmbot clock me <start> <finish> - Clocks in at <start> and out at <finish>\n @Brehmbot clock register <username> <password> - How Brehm should authenticate you on timetracker\n @Brehmbot clock help - Recursion")
+    msg.send("@Brehmbot clock in - Clocks in at the current time hubot\n @Brehmbot clock out - Clocks out at the current time hubot\n @Brehmbot clock me <start> <finish> - Clocks in at <start> and out at <finish>\n @Brehmbot clock register <username> <password> - How Brehm should authenticate you on timetracker\n @Brehmbot clock unregister - Unregisters your account with Brehm\n @Brehmbot clock help - Recursion")
 

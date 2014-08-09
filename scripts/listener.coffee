@@ -30,12 +30,20 @@ class Listener
 
     unsubscribe: (msg) ->
       sub_word = "subscriptions_" + msg.match[2].toLowerCase()
+      return -1 if @myRobot.brain.data[sub_word] is `undefined`
       if msg.message.user.room is `undefined`
         index = @myRobot.brain.data[sub_word].indexOf(msg.message.user["jid"])
       else
         index = @myRobot.brain.data[sub_word].indexOf(msg.message.user["reply_to"])
       @myRobot.brain.data[sub_word].splice(index, 1) if index != -1
       return index
+
+    send: (msg, str) ->
+      if msg.message.user.room is `undefined`
+        jid = msg.message.user["jid"]
+      else
+        jid = msg.message.user["reply_to"]
+      @myRobot.send jid, str
      
 
 module.exports = (robot) ->
@@ -45,9 +53,20 @@ module.exports = (robot) ->
   robot.respond /stop listening (to|for) (.*)/i, (msg) ->
     index = listener.unsubscribe msg
     if index != -1
-      msg.send "I am no longer listening for '" + msg.match[2] + "' for you."
+      listener.send msg, "I am no longer listening for '" + msg.match[2] + "' for you."
     else
-      msg.send "I was never listening for '" + msg.match[2] + "' for you. Type '@Brehmbot listen for " + msg.match[2] + "' to listen."
+      listener.send msg, "I was never listening for '" + msg.match[2] + "' for you. Type '@Brehmbot listen for " + msg.match[2] + "' to listen."
+
+  robot.respond /stop listening all/i, (msg) ->
+    subscribed_words = robot.brain.data["subscribed_words"]
+    for word in subscribed_words
+      if msg.message.user.room is `undefined`
+        index = robot.brain.data["subscriptions_" + word].indexOf(msg.message.user["jid"])
+      else
+        index = robot.brain.data["subscriptions_" + word].indexOf(msg.message.user["reply_to"])
+      unless index is -1
+        robot.brain.data["subscriptions_" + word].splice(index, 1)
+        listener.send msg, "I am no longer listening for '" + word + "' for you."
 
   robot.hear /.*/i, (msg) ->
     return if msg.message.user.room is `undefined`
@@ -57,16 +76,17 @@ module.exports = (robot) ->
       unless phrase.toLowerCase().indexOf(word) is -1
         people = robot.brain.data["subscriptions_" + word]
         for person in people
-          robot.send person, msg.message.user.name + " said '" + word + "' in room '" + msg.message.user.room + "': \"" + phrase + "\"" unless msg.message.user["reply_to"] is person
+          #continue if person.indexOf("conf.hipchat.com") != -1 and robot.brain.data["allowed_rooms"].indexOf(person) is -1
+          robot.send person, msg.message.user.name + " said '" + word + "' in room '" + msg.message.user.room + "': \"" + phrase.replace("@", "[at]") + "\"" unless msg.message.user["reply_to"] is person
 
   robot.respond /listen (to|for) (.*)/i, (msg) ->
     msg.match[2] = msg.match[2].trim()
     return if msg.match[2].length == 0
     added = listener.subscribe msg
     if added
-      msg.send "I'll let you know when '" + msg.match[2] + "' is said in a room"
+      listener.send msg, "I'll let you know when '" + msg.match[2] + "' is said in a room"
     else
-      msg.send "I am already listening for '" + msg.match[2] + "' for you."
+      listener.send msg, "I am already listening for '" + msg.match[2] + "' for you."
     
   robot.respond /what are people listening for/i, (msg) ->
     words = robot.brain.data["subscribed_words"]
@@ -79,4 +99,4 @@ module.exports = (robot) ->
           message += " people listening\n"
         else
           message += " person listening\n"
-    msg.send message
+    listener.send msg, message
