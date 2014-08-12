@@ -72,12 +72,15 @@ module.exports = (robot) ->
     return if msg.message.user.room is `undefined`
     subscribed_words = robot.brain.data["subscribed_words"]
     phrase = msg.match[0]
+    filtered_phrase = msg.match[0]
+    while filtered_phrase.indexOf("@") != -1 # Super jank
+      filtered_phrase = filtered_phrase.replace("@", "[at]") # Super jank
     for word in subscribed_words
       unless phrase.toLowerCase().indexOf(word) is -1
         people = robot.brain.data["subscriptions_" + word]
         for person in people
           #continue if person.indexOf("conf.hipchat.com") != -1 and robot.brain.data["allowed_rooms"].indexOf(person) is -1
-          robot.send person, msg.message.user.name + " said '" + word + "' in room '" + msg.message.user.room + "': \"" + phrase.replace("@", "[at]") + "\"" unless msg.message.user["reply_to"] is person
+          robot.send person, msg.message.user.name + " said '" + word + "' in room '" + msg.message.user.room + "': \"" + filtered_phrase + "\"" unless msg.message.user["reply_to"] is person
 
   robot.respond /listen (to|for) (.*)/i, (msg) ->
     msg.match[2] = msg.match[2].trim()
