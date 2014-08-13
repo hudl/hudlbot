@@ -6,6 +6,8 @@
 #   hubot stop listening for <word> - Stop being notified when a word is mentioned in any room 
 #   hubot what are people listening for - Displays a list of words people are listening for 
 
+_ = require('underscore')
+
 class Listener
 
   constructor: (@robot) ->
@@ -92,7 +94,10 @@ module.exports = (robot) ->
       listener.send msg, "I am already listening for '" + msg.match[2] + "' for you."
     
   robot.respond /what are people listening for/i, (msg) ->
-    words = robot.brain.data["subscribed_words"]
+    words = _.sortBy robot.brain.data["subscribed_words"], (key) ->
+      robot.brain.data["subscriptions_" + word].length
+    words.reverse()
+
     message = "People are listening for:\n"
     for word in words
       amount = robot.brain.data["subscriptions_" + word].length
