@@ -6,7 +6,7 @@ getRooms = ->
 
 module.exports = (robot) ->
 
-  robot.respond /find room in (east|west)/i, (msg) ->
+  robot.respond /find room in (east|west|omaha)/i, (msg) ->
     msg.send "Checking for rooms in " + msg.match[1] + ", 1 sec..."
     robot.http("http://calendars/api/roomlist/hudl" + msg.match[1] + "@hudl.com/availability")
       .get() (err, res, body) ->
