@@ -2,5 +2,5 @@
 # Which is a shame, because biceps are really funny looking.
 
 module.exports = (robot) ->
-  robot.respond /(bicep)( me)? (.*)/i, (msg) ->
-    msg.send "(bicepleft) #{msg.match[2]} (bicepright)"
+  robot.respond /(bicep)(.*)/i, (msg) ->
+    msg.send "(bicepleft) #{msg.match[1]} (bicepright)"
