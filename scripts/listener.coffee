@@ -95,7 +95,7 @@ module.exports = (robot) ->
     
   robot.respond /what are people listening for/i, (msg) ->
     words = _.sortBy robot.brain.data["subscribed_words"], (key) ->
-      robot.brain.data["subscriptions_" + word].length * -1
+      robot.brain.data["subscriptions_" + key].length * -1
 
     message = "People are listening for:\n"
     for word in words
