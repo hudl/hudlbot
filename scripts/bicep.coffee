@@ -1,6 +1,7 @@
-# It's really tedious to type (bicepleft) [thing] (bicepright).
-# Which is a shame, because biceps are really funny looking.
+# Description:
+# Wraps two bicep emotes around whatever you like.
 
 module.exports = (robot) ->
-  robot.respond /(bicep)(.*)/i, (msg) ->
-    msg.send "(bicepleft) #{msg.match[1]} (bicepright)"
+  robot.respond /(bicep )(.*)/i, (msg) ->
+    strength = msg.match[2]
+    msg.send "(bicepleft) " + strength + " (bicepright)"
