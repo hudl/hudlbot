@@ -4,6 +4,7 @@
 #                     sends back a spoken version of that phrase in its native
 #                     language.
 
+###
 module.exports = (robot) ->
   robot.hear /(speak)( me)? (.*)/i, (msg) ->
     term   = "\"#{msg.match[3]}\""
@@ -36,3 +37,4 @@ module.exports = (robot) ->
               .query({ appId: apiKey, text: term, language: lang, format: "audio/wav" })
               .get() (err, res, body) ->
                 msg.send(eval(body)) unless err
+###
