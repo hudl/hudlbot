@@ -34,6 +34,7 @@ module.exports = (robot) ->
   robot.respond /(shut up)|silence/i, (msg) ->
     return unless msg.message.user.room
     msg.send "Whatever. If you need me say @BrehmBot I miss you"
+    msg.send "/leave"
     silence.shutup msg
 
   robot.respond /i miss you/i, (msg) ->
