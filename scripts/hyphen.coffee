@@ -2,7 +2,7 @@
 #   Keaton Greve (keaton.greve)
 
 module.exports = (robot) ->
-  robot.respond /([^\s]*)[-|\s]+ass\s([^\s]*)/i, (msg) ->
+  robot.hear /([^\s]*)[-|\s]+ass\s([^\s]*)/i, (msg) ->
     matches = msg.match
     if matches? and matches.length >= 3
       msg.send "Ha, more like \"#{matches[1]} ass-#{matches[2]}\""
