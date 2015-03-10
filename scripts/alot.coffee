@@ -25,5 +25,5 @@ alot = [
   "https://s3.amazonaws.com/hudl-internal-assets/alot/i__m_sad__alot_by_celestialbeast-d3f0uv1.jpg"]
 
 module.exports = (robot) ->
-  robot.respond /alot/i, (msg) ->
+  robot.hear /alot/i, (msg) ->
     msg.send msg.random alot
