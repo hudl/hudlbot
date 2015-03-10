@@ -1,1 +1,1 @@
-app: bin/hubot -a hipchat -n Brehm
+app: bin/hubot -a slack -n Brehm

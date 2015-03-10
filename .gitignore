@@ -3,9 +3,11 @@ node_modules
 .idea/*
 brain-dump.json
 rooms.txt
-localBrehm
+slackBrehm
+hipchatBrehm
 out.log
 err.log
-startBrehmForever
+startSlackBrehmForever
+startHipchatBrehmForever
 restart.sh
 .vimrc
