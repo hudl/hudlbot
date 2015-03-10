@@ -13,13 +13,13 @@
 #   dont ship - Display a fail message
 
 module.exports = (robot) ->
-  robot.hear /ship it|shipping/i, (msg) ->
+  robot.respond /ship it|shipping/i, (msg) ->
     msg.send msg.random shipit
 
-  robot.hear /shipped/i, (msg) ->
+  robot.respond /shipped/i, (msg) ->
     msg.send msg.random shippedit
 
-  robot.hear /dont ship/i, (msg) ->
+  robot.respond /dont ship/i, (msg) ->
     msg.send msg.random dontship
 
 shipit = [

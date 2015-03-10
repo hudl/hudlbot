@@ -27,7 +27,7 @@ module.exports = (robot) ->
     nowHours = now.getHours()    
     msg.send msg.random gifs  if nowHours is 11 or nowHours is 12
 
-  robot.hear /lunch/i, (msg) ->
+  robot.respond /lunch/i, (msg) ->
     return if msg.message.text.match('subscribe')
     return msg.send("(shrug) It's random lunch all week.") if allWeekRandom
     message = msg.message.text.toLowerCase()

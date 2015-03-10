@@ -27,5 +27,5 @@ steves = [
 ]
 
 module.exports = (robot) ->
-  robot.hear /\b(steve holt)\b/i, (msg) ->
+  robot.respond /\b(steve holt)\b/i, (msg) ->
     msg.send msg.random steves
