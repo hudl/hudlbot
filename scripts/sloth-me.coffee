@@ -60,5 +60,5 @@ sloths = [
 ]
 
 module.exports = (robot) ->
-  robot.hear /sloth me/i, (msg) ->
+  robot.respond /sloth me/i, (msg) ->
     msg.send msg.random sloths

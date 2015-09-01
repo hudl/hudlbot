@@ -22,7 +22,7 @@ cleanup = [
 ]
 
 module.exports = (robot) ->
-  robot.hear /.*(Food is here).*/, (msg) ->
+  robot.respond /.*(Food is here).*/, (msg) ->
     now = new Date()
     nowHours = now.getHours()    
     msg.send msg.random gifs  if nowHours is 11 or nowHours is 12
