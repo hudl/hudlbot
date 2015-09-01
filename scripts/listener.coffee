@@ -70,7 +70,7 @@ module.exports = (robot) ->
         robot.brain.data["subscriptions_" + word].splice(index, 1)
         listener.send msg, "I am no longer listening for '" + word + "' for you."
 
-  robot.hear /.*/i, (msg) ->
+  robot.respond /.*/i, (msg) ->
     return if msg.message.user.room is `undefined`
     subscribed_words = robot.brain.data["subscribed_words"]
     phrase = msg.match[0]

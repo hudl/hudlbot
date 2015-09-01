@@ -4,7 +4,7 @@
 #
 
 module.exports = (robot) ->
-  robot.hear spotify.link, (msg) ->
+  robot.respond spotify.link, (msg) ->
     msg.http(spotify.uri msg.match[0]).get() (err, res, body) ->
       if res.statusCode is 200
         data = JSON.parse(body)

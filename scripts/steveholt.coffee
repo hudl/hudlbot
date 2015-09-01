@@ -1,5 +1,5 @@
 # Description:
-#   When Steve Holt hears his name, Steve Holt makes his presence known
+#   When Steve Holt responds his name, Steve Holt makes his presence known
 #
 # Dependencies:
 #   None
@@ -27,5 +27,5 @@ steves = [
 ]
 
 module.exports = (robot) ->
-  robot.hear /\b(steve holt)\b/i, (msg) ->
+  robot.respond /\b(steve holt)\b/i, (msg) ->
     msg.send msg.random steves

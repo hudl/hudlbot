@@ -12,9 +12,9 @@ module.exports = (robot) ->
     if msg.match[1]
       params['source'] = msg.match[1].split(/\s+/).join('+')
 
-    msg.http('http://www.iheartquotes.com/api/v1/random')
+    msg.http('http://www.irespondtquotes.com/api/v1/random')
       .query(params)
       .get() (err, res, body) ->
-        body = body.replace(/\s*\[\w+\]\s*http:\/\/iheartquotes.*\s*$/m, '')
+        body = body.replace(/\s*\[\w+\]\s*http:\/\/irespondtquotes.*\s*$/m, '')
         body = body.replace(/&quot;/g, "'")
         msg.send body
