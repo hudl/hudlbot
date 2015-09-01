@@ -15,6 +15,6 @@ module.exports = (robot) ->
     msg.http('http://www.iheartquotes.com/api/v1/random')
       .query(params)
       .get() (err, res, body) ->
-        body = body.replace(/\s*\[\w+\]\s*http:\/\/irespondtquotes.*\s*$/m, '')
+        body = body.replace(/\s*\[\w+\]\s*http:\/\/iheartquotes.*\s*$/m, '')
         body = body.replace(/&quot;/g, "'")
         msg.send body
